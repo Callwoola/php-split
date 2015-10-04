@@ -6,11 +6,11 @@ class initTest extends PHPUnit_Framework_TestCase
 {
     public function testIndex()
     {
-        echo "test...";
+        echo "test...\n";
 
         $split = new Split();
 
-        $split->init();
+        var_dump( $split->start("您好 phpSplit"));
 
         $this->assertTrue(True);
     }

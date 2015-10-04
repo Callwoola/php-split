@@ -14,7 +14,7 @@
         >
     <testsuites>
         <testsuite name="Bank">
-            <directory>./tests/initTest.php</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>
