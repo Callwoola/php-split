@@ -6,7 +6,7 @@ class initTest extends PHPUnit_Framework_TestCase
 {
     public function testIndex()
     {
-        echo "test...";
+        echo "test...\n";
 
         $split = new Split();
 
