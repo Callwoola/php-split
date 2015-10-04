@@ -10,7 +10,7 @@ class initTest extends PHPUnit_Framework_TestCase
 
         $split = new Split();
 
-        $split->init();
+        var_dump( $split->start("您好 phpSplit"));
 
         $this->assertTrue(True);
     }

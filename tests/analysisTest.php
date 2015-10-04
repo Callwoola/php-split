@@ -18,7 +18,7 @@ class analysisTest extends PHPUnit_Framework_TestCase
             0/,查看页面信息,是否正常启动.status=200表示正常启动了，还有一些es的版本信息,name为配';
         ChineseAnalysis::$loadInit = false;
         $pa = new ChineseAnalysis('utf-8', 'utf-8', false);
-        $pa->LoadDict();
+//        $pa->LoadDict();
         $pa->SetSource($str);
         $pa->differMax = false;
         $pa->unitWord = false;

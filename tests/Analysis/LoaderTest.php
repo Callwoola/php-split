@@ -16,7 +16,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         $result = $test->getLoadDict();
 
         $this->assertTrue(true);
-        var_dump($result);
+//        var_dump($result);
     }
 }
 
