@@ -3,7 +3,7 @@
 namespace phpSplit\Analysis;
 
 
-class Analysis{
+class Analysis extends ChineseAnalysis{
 
     /**
      * 开始执行分析

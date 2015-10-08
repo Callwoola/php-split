@@ -8,7 +8,9 @@ define('UCS2', 'ucs-2be');
 
 //class ChineseAnalysis extends Config
 
-class ChineseAnalysis
+
+
+abstract class ChineseAnalysis
 {
     use Loader;
     use Config;
