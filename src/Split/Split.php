@@ -25,8 +25,6 @@ class Split
         $pa = new ChineseAnalysis('utf-8', 'utf-8', false);
 
         $pa->SetSource($word);
-        $pa->differMax = false;
-        $pa->unitWord = false;
         $pa->StartAnalysis(true);
 
         $getInfo = true;

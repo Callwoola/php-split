@@ -6,7 +6,7 @@ define('_SP_', chr(0xFF) . chr(0xFE));
 define('UCS2', 'ucs-2be');
 
 
-class ChineseAnalysis
+class ChineseAnalysis implements  ChineseAnalysisInterface
 {
     use Loader;
     use Config;
@@ -19,15 +19,15 @@ class ChineseAnalysis
     {
 //        $this->addonDicFile = dirname(__FILE__) . '/' . $this->addonDicFile;
 //        $this->mainDicFile = dirname(__FILE__) . '/' . $this->mainDicFile;
-        $source_charset = 'utf-8';
-        $target_charset = 'utf-8';
 
-        $this->SetSource($source, $source_charset, $target_charset);
+        $this->differMax = false;
+        $this->unitWord = false;
+
+        $this->SetSource($source);
 
         $load_all = true;
         $this->isLoadAll = $load_all;
-        // auto load
-//        if (self::$loadInit) $this->LoadDict();
+
         list($mainDicHand, $mainDic, $additionDict, $loadTime) = $this->getLoadDict();
 
         $this->mainDicHand = $mainDicHand;
@@ -99,13 +99,18 @@ class ChineseAnalysis
      *
      * @return bool
      */
-    public function SetSource($source, $source_charset = 'utf-8', $target_charset = 'utf-8')
+    public function SetSource($source)
     {
+        $source_charset = 'utf-8';
+        $target_charset = 'utf-8';
+
         $this->sourceCharSet = strtolower($source_charset);
         $this->targetCharSet = strtolower($target_charset);
         $this->simpleResult = [];
         $this->finallyResult = [];
         $this->finallyIndex = [];
+
+
         if ($source != '') {
             $rs = true;
             if (preg_match("/^utf/", $source_charset)) {
@@ -133,6 +138,7 @@ class ChineseAnalysis
     {
         $this->resultType = $rstype;
     }
+
 
     /**
      * 检测某个词是否存在
