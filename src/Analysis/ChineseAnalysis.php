@@ -23,7 +23,7 @@ class ChineseAnalysis implements  ChineseAnalysisInterface
         $this->differMax = false;
         $this->unitWord = false;
 
-        $this->SetSource($source);
+        $this->setSource($source);
 
         $load_all = true;
         $this->isLoadAll = $load_all;
@@ -99,7 +99,7 @@ class ChineseAnalysis implements  ChineseAnalysisInterface
      *
      * @return bool
      */
-    public function SetSource($source)
+    public function setSource($source)
     {
         $source_charset = 'utf-8';
         $target_charset = 'utf-8';
@@ -188,7 +188,7 @@ class ChineseAnalysis implements  ChineseAnalysisInterface
      * @parem bool optimize 是否对结果进行优化
      * @return bool
      */
-    public function StartAnalysis($optimize = true)
+    public function startAnalysis($optimize = true)
     {
 //        if (!$this->isLoadDic) {
 //            $this->LoadDict();
@@ -689,7 +689,7 @@ class ChineseAnalysis implements  ChineseAnalysisInterface
      * 获取最终结果字符串（用空格分开后的分词结果）
      * @return string
      */
-    public function GetFinallyResult($spword = ' ', $word_meanings = false)
+    public function getFinallyResult($spword = ' ', $word_meanings = false)
     {
         $rsstr = '';
         foreach ($this->finallyResult as $v) {

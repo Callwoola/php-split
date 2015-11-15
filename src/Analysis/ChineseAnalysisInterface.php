@@ -3,9 +3,9 @@ namespace phpSplit\Analysis;
 
 interface ChineseAnalysisInterface
 {
-    public function SetSource();
+    public function setSource($source);
 
-    public function StartAnalysis();
+    public function startAnalysis($optimize = true);
 
-    public function GetFinallyResult();
+    public function getFinallyResult($spword = ' ', $word_meanings = false);
 }

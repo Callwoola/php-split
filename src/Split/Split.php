@@ -24,12 +24,12 @@ class Split
         ChineseAnalysis::$loadInit = false;
         $pa = new ChineseAnalysis('utf-8', 'utf-8', false);
 
-        $pa->SetSource($word);
-        $pa->StartAnalysis(true);
+        $pa->setSource($word);
+        $pa->startAnalysis(true);
 
         $getInfo = true;
         $sign = '-';
-        $result = $pa->GetFinallyResult($sign, $getInfo);
+        $result = $pa->getFinallyResult($sign, $getInfo);
         return explode($sign, $result);
     }
 
