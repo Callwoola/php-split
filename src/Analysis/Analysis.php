@@ -1,5 +1,4 @@
 <?php
-
 namespace phpSplit\Analysis;
 
 
@@ -500,5 +499,23 @@ class Analysis extends ChineseAnalysis{
             $rsstr = iconv('utf-8', 'big5', iconv(UCS2, 'utf-8', $str));
         }
         return $rsstr;
+    }
+
+    /**
+     * 获得保存目标编码
+     * @return int
+     */
+    private function _source_result_charset()
+    {
+        if (preg_match("/^utf/", $this->targetCharSet)) {
+            $rs = 1;
+        } else if (preg_match("/^gb/", $this->targetCharSet)) {
+            $rs = 2;
+        } else if (preg_match("/^big/", $this->targetCharSet)) {
+            $rs = 3;
+        } else {
+            $rs = 4;
+        }
+        return $rs;
     }
 }
