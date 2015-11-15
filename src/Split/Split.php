@@ -33,6 +33,7 @@ class Split
         return explode($sign, $result);
     }
 
+
     public static function loadConfig()
     {
         $files = [
