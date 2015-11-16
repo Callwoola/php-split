@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/Callwoola/LBS.svg?branch=develop)](https://travis-ci.org/Callwoola/LBS)
 
 
-phpSplit 是一个基于php开发的中文分词库
+### phpSplit 是一个基于php开发的中文分词库
 
 居于Unicode编码词典的php分词器
 * 只适用于php5，必要函数 iconv
@@ -12,7 +12,41 @@ phpSplit 是一个基于php开发的中文分词库
 * 对主词典使用特殊格式进行编码, 不需要载入词典到内存操作
 
 
-分词结果后缀说明
+### 使用
+
+* 首先 确保使用php为5.3+
+* 安装composer
+
+```
+composer install 
+```
+
+```php
+
+require __DIR__ .'/vendor/autoload.php';
+
+$split = new Split();
+
+var_dump( $split->simple("您好 phpSplit"));
+
+$this->assertTrue(True);
+```
+
+
+```php
+array(3) {
+  [0] =>
+  string(0) ""
+  [1] =>
+  string(6) "您好"
+  [2] =>
+  string(8) "phpSplit"
+}
+
+```
+
+
+### 分词结果后缀说明
 ```php
 名词n、
 时间词t、

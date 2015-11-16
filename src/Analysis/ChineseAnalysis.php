@@ -209,7 +209,6 @@ class ChineseAnalysis implements ChineseAnalysisInterface
 //        }
 
 
-
         $this->simpleResult = $this->finallyResult = [];
         $this->sourceString .= chr(0) . chr(32);
         $slen = strlen($this->sourceString);
@@ -312,7 +311,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
                                 $this->simpleResult[$s]['w'] = $tmpw;
                                 $this->newWords[$tmpw] = 1;
                                 if (!isset($this->newWords[$tmpw])) {
-                                    $this->foundWordStr .= StringTool::encoding($tmpw,$this->targetCharSet) . '/nb, ';
+                                    $this->foundWordStr .= StringTool::encoding($tmpw, $this->targetCharSet) . '/nb, ';
                                     $this->SetWordInfos($tmpw, ['c' => 1, 'm' => 'nb']);
                                 }
                                 $this->simpleResult[$s]['t'] = 13;
@@ -425,7 +424,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
                         $this->simpleResult[$spos - 1]['w'] = $ww;
                         $this->simpleResult[$spos - 1]['t'] = 4;
                         if (!isset($this->newWords[$this->simpleResult[$spos - 1]['w']])) {
-                            $this->foundWordStr .= StringTool::encoding($ww,$this->targetCharSet) . '/mu, ';
+                            $this->foundWordStr .= StringTool::encoding($ww, $this->targetCharSet) . '/mu, ';
                             $this->SetWordInfos($ww, ['c' => 1, 'm' => 'mu']);
                         }
                         $this->simpleResult[$spos]['w'] = '';
@@ -467,7 +466,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
         if ($spos > 0 && $slen < 11 && $this->simpleResult[$spos - 1]['w'] == $quote1) {
             $tmparr[] = $str;
             if (!isset($this->newWords[$str])) {
-                $this->foundWordStr .= StringTool::encoding($str,$this->targetCharSet) . '/nq, ';
+                $this->foundWordStr .= StringTool::encoding($str, $this->targetCharSet) . '/nq, ';
                 $this->SetWordInfos($str, ['c' => 1, 'm' => 'nq']);
             }
             if (!$this->differMax) {
@@ -534,7 +533,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
                 $this->simpleResult[$prePos]['w'] = $lastw . $smarr[0];
                 $this->simpleResult[$prePos]['t'] = 4;
                 if (!isset($this->newWords[$this->simpleResult[$prePos]['w']])) {
-                    $this->foundWordStr .= StringTool::encoding($this->simpleResult[$prePos]['w'],$this->targetCharSet) . '/mu, ';
+                    $this->foundWordStr .= StringTool::encoding($this->simpleResult[$prePos]['w'], $this->targetCharSet) . '/mu, ';
                     $this->SetWordInfos($this->simpleResult[$prePos]['w'], ['c' => 1, 'm' => 'mu']);
                 }
                 $smarr[0] = '';
@@ -565,7 +564,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
                 }
                 $newarr[$j] = $cw . $nw;
                 if (!isset($this->newWords[$newarr[$j]])) {
-                    $this->foundWordStr .= StringTool::encoding($newarr[$j],$this->targetCharSet) . '/mu, ';
+                    $this->foundWordStr .= StringTool::encoding($newarr[$j], $this->targetCharSet) . '/mu, ';
                     $this->SetWordInfos($newarr[$j], ['c' => 1, 'm' => 'mu']);
                 }
                 $j++;
@@ -591,7 +590,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
                     }
                     if (!isset($this->newWords[$newarr[$j]])) {
                         $this->SetWordInfos($newarr[$j], ['c' => 1, 'm' => 'nr']);
-                        $this->foundWordStr .= StringTool::encoding($newarr[$j],$this->targetCharSet) . '/nr, ';
+                        $this->foundWordStr .= StringTool::encoding($newarr[$j], $this->targetCharSet) . '/nr, ';
                     }
                     //为了防止错误，保留合并前的姓名
                     if (strlen($nw) == 4) {
@@ -622,7 +621,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
                 if (!isset($this->addonDic['s'][$cw]) && !$is_rs) {
                     $newarr[$j] = $cw . $nw;
                     if (!isset($this->newWords[$newarr[$j]])) {
-                        $this->foundWordStr .= StringTool::encoding($newarr[$j],$this->targetCharSet) . '/na, ';
+                        $this->foundWordStr .= StringTool::encoding($newarr[$j], $this->targetCharSet) . '/na, ';
                         $this->SetWordInfos($newarr[$j], ['c' => 1, 'm' => 'na']);
                     }
                     $i++;
@@ -642,7 +641,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
                         $i++;
                     }
                     if (!isset($this->newWords[$newarr[$j]])) {
-                        $this->foundWordStr .= StringTool::encoding($newarr[$j],$this->targetCharSet) . '/ms, ';
+                        $this->foundWordStr .= StringTool::encoding($newarr[$j], $this->targetCharSet) . '/ms, ';
                         $this->SetWordInfos($newarr[$j], ['c' => 1, 'm' => 'ms']);
                     }
                     $i++;
@@ -676,7 +675,6 @@ class ChineseAnalysis implements ChineseAnalysisInterface
     }
 
 
-
     /**
      * 获取最终结果字符串（用空格分开后的分词结果）
      * @return string
@@ -692,7 +690,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
             if ($word_meanings) {
                 $m = $this->GetWordProperty($v['w']);
             }
-            $w = StringTool::encoding($v['w'],$this->targetCharSet);
+            $w = StringTool::encoding($v['w'], $this->targetCharSet);
             if ($w != ' ') {
                 if ($word_meanings) {
                     $rsstr .= $spword . $w . $m;
@@ -713,7 +711,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
         $rearr = [];
         foreach ($this->simpleResult as $k => $v) {
             if (empty($v['w'])) continue;
-            $w = StringTool::encoding($v['w'],$this->targetCharSet);
+            $w = StringTool::encoding($v['w'], $this->targetCharSet);
             if ($w != ' ') $rearr[] = $w;
         }
         return $rearr;
@@ -727,7 +725,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
     {
         $rearr = [];
         foreach ($this->simpleResult as $k => $v) {
-            $w = StringTool::encoding($v['w'],$this->targetCharSet);
+            $w = StringTool::encoding($v['w'], $this->targetCharSet);
             if ($w != ' ') {
                 $rearr[$k]['w'] = $w;
                 $rearr[$k]['t'] = $v['t'];
@@ -750,7 +748,7 @@ class ChineseAnalysis implements ChineseAnalysisInterface
             if ($this->resultType == 2 && ($v['t'] == 3 || $v['t'] == 5)) {
                 continue;
             }
-            $w = StringTool::encoding($v['w'],$this->targetCharSet);
+            $w = StringTool::encoding($v['w'], $this->targetCharSet);
             if ($w == ' ') {
                 continue;
             }

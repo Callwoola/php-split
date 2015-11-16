@@ -7,9 +7,14 @@ use phpSplit\Analysis\ChineseAnalysis;
 class Split
 {
 
+    public $pa;
+
     public function __construct()
     {
 //        $this->loadConfig();
+
+        ChineseAnalysis::$loadInit = false;
+        $this->pa = new ChineseAnalysis('utf-8', 'utf-8', false);
     }
 
     /**
@@ -20,20 +25,42 @@ class Split
      */
     public function start($word = '')
     {
-
-        ChineseAnalysis::$loadInit = false;
-        $pa = new ChineseAnalysis('utf-8', 'utf-8', false);
-
-        $pa->setSource($word);
-        $pa->startAnalysis(true);
+        $this->pa->setSource($word);
+        $this->pa->startAnalysis(true);
 
         $getInfo = true;
         $sign = '-';
-        $result = $pa->getFinallyResult($sign, $getInfo);
+        $result = $this->pa->getFinallyResult($sign, $getInfo);
+
         return explode($sign, $result);
     }
 
+    /**
+     * 简单分词方法
+     *
+     * @param string $string
+     * @return array
+     */
+    public function simple($string = '')
+    {
+        $this->pa->setSource($string);
+        $this->pa->startAnalysis(true);
 
+        $getInfo = true;
+        $sign = '-';
+        $result = $this->pa->getFinallyResult($sign, $getInfo);
+
+        return array_map(function($word){
+            $word = explode('/',$word);
+            return $word[0];
+        },explode($sign, $result));
+    }
+
+    /**
+     * load config
+     *
+     * @return bool
+     */
     public static function loadConfig()
     {
         $files = [

@@ -15,5 +15,17 @@ class initTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(True);
     }
 
+
+    public function testSimple()
+    {
+        echo "test...\n";
+
+        $split = new Split();
+
+        var_dump( $split->simple("您好 phpSplit"));
+
+        $this->assertTrue(True);
+    }
+
 }
 
