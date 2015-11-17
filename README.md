@@ -1,6 +1,6 @@
 phpSplit php中文分词库
 ============================
-[![Build Status](https://travis-ci.org/Callwoola/LBS.svg?branch=develop)](https://travis-ci.org/Callwoola/LBS)
+[![Build Status](https://travis-ci.org/Callwoola/php-split.svg?branch=develop)](https://travis-ci.org/Callwoola/php-split)
 
 
 ### phpSplit 是一个基于php开发的中文分词库
@@ -14,7 +14,7 @@ phpSplit php中文分词库
 
 ### 使用
 
-* 首先 确保使用php为5.3+
+* 首先 确保使用php为5.4+
 * 安装composer
 
 ```
