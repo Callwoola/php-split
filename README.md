@@ -14,7 +14,7 @@ phpSplit php中文分词库
 
 ### 使用
 
-* 首先 确保使用php为5.3+
+* 首先 确保使用php为5.4+
 * 安装composer
 
 ```
