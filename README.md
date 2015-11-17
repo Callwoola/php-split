@@ -1,4 +1,4 @@
-# phpSplit php中文分词库
+phpSplit php中文分词库
 ============================
 [![Build Status](https://travis-ci.org/Callwoola/LBS.svg?branch=develop)](https://travis-ci.org/Callwoola/LBS)
 
