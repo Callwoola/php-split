@@ -10,12 +10,14 @@ use phpSplit\Analysis\ChineseAnalysis;
 class analysisTest extends PHPUnit_Framework_TestCase
 {
 
+    /**
+     * 基本测试
+     */
     public function testAnalysis()
     {
         echo "analysis...\n";
 
-        $str='lasticSearch(简称ES)由java语言实现,运行环境依赖java。ES 1.
-            0/,查看页面信息,是否正常启动.status=200表示正常启动了，还有一些es的版本信息,name为配';
+        $str='对于五到十人小型团队来说，什么样的协作开发方式比较合适？Bitbuket + Worktile + WizNote';
         ChineseAnalysis::$loadInit = false;
         $pa = new ChineseAnalysis('utf-8', 'utf-8', false);
 //        $pa->LoadDict();

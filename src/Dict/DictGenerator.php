@@ -8,8 +8,12 @@ class DictGenerator {
 
     /**
      * 编译词典
-     * @parem $sourcefile utf-8编码的文本词典数据文件<参见范例dict/not-build/base_dic_full.txt>
      * 注意, 需要PHP开放足够的内存才能完成操作
+     * utf-8编码的文本词典数据文件<参见范例dict/not-build/base_dic_full.txt>
+     *
+     * @param $source_file
+     * @param $target_file
+     *
      * @return void
      */
     public function MakeDict($source_file, $target_file = '')
@@ -57,15 +61,19 @@ class DictGenerator {
 
     /**
      * 导出词典的词条
-     * @parem $targetfile 保存位置
-     * @return void
+     * 保存位置
+     *
+     * @param $targetFile
+     *
+     * @return bool
      */
-    public function ExportDict($targetfile)
+    public function exportDict($targetFile)
     {
         if (!$this->mainDicHand) {
             $this->mainDicHand = fopen($this->mainDicFile, 'r');
         }
-        $fp = fopen($targetfile, 'w');
+        $fp = fopen($targetFile, 'w');
+
 //        for ($i = 0; $i <= $this->mask_value; $i++) {
 //            $move_pos = $i * 8;
 //            fseek($this->mainDicHand, $move_pos, SEEK_SET);
@@ -82,12 +90,18 @@ class DictGenerator {
 //                fwrite($fp, "{$w},{$v[0]},{$v[1]}\n");
 //            }
 //        }
+
         fwrite($fp, $this->ExportDictCore($this->mainDicHand));
         fclose($fp);
         return true;
     }
 
-    public function ExportDictCore($source_str)
+
+    /**
+     * @param $source_str
+     * @return string
+     */
+    public function exportDictCore($source_str)
     {
         $str = '';
         for ($i = 0; $i <= $this->mask_value; $i++) {
@@ -103,10 +117,11 @@ class DictGenerator {
             if (!is_array($data)) continue;
             foreach ($data as $k => $v) {
                 $w = iconv(UCS2, 'utf-8', $k);
-//                fwrite($fp, "{$w},{$v[0]},{$v[1]}\n");
+                //                fwrite($fp, "{$w},{$v[0]},{$v[1]}\n");
                 $str .= "{$w},{$v[0]},{$v[1]}\n";
             }
         }
+
         return $str;
     }
 
