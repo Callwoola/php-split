@@ -4,17 +4,35 @@ namespace phpSplit\Split;
 
 use phpSplit\Analysis\ChineseAnalysis;
 
-class Split
+/**
+ * php Split 主要接口提供
+ *
+ * @package phpSplit\Split
+ */
+class Split implements SplitInterface
 {
 
     public $pa;
 
     public function __construct()
     {
-//        $this->loadConfig();
+        // $this->loadConfig();
 
         ChineseAnalysis::$loadInit = false;
+
         $this->pa = new ChineseAnalysis('utf-8', 'utf-8', false);
+    }
+
+
+    /**
+     * 添加附加词
+     *
+     * @param array $words
+     * @return void
+     */
+    public function attach(array $words = [])
+    {
+        $this->pa->setAttach($words);
     }
 
     /**
@@ -29,10 +47,14 @@ class Split
         $this->pa->startAnalysis(true);
 
         $getInfo = true;
-        $sign = '-';
-        $result = $this->pa->getFinallyResult($sign, $getInfo);
+        $sign    = '-';
+        $result  = $this->pa->getFinallyResult($sign, $getInfo);
+        $result  = explode($sign, $result);
+        $result  = array_filter($result, function ($var) {
+            return !empty($var);
+        });
 
-        return explode($sign, $result);
+        return $result;
     }
 
     /**
@@ -47,13 +69,18 @@ class Split
         $this->pa->startAnalysis(true);
 
         $getInfo = true;
-        $sign = '-';
-        $result = $this->pa->getFinallyResult($sign, $getInfo);
+        $sign    = '-';
+        $result  = $this->pa->getFinallyResult($sign, $getInfo);
+        $result  = explode($sign, $result);
+        $result  = array_filter($result, function ($var) {
+            return !empty($var);
+        });
 
-        return array_map(function($word){
-            $word = explode('/',$word);
+        return array_map(function ($word) {
+            $word = explode('/', $word);
+
             return $word[0];
-        },explode($sign, $result));
+        }, $result);
     }
 
     /**
@@ -63,13 +90,12 @@ class Split
      */
     public static function loadConfig()
     {
-        $files = [
-            __DIR__ . '/Config.php',
-        ];
+        $files = [__DIR__ . '/Config.php',];
 
         foreach ($files as $file) {
             if (is_file($file)) {
                 require_once($file);
+
                 return true;
             }
         }
