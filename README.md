@@ -18,18 +18,13 @@ phpSplit php中文分词库
 * 安装composer
 
 ```
-composer install 
+composer install
 ```
 
 ```php
-
 require __DIR__ .'/vendor/autoload.php';
-
-$split = new Split();
-
-var_dump( $split->simple("您好 phpSplit"));
-
-$this->assertTrue(True);
+$split = new \phpSplit\Split\Split();
+var_dump($split->simple("您好 phpSplit"));
 ```
 
 

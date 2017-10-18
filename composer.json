@@ -25,13 +25,10 @@
         }
     },
     "minimum-stability": "dev",
-    "repositories": [
-        {
+    "repositories": {
+        "packagist": {
             "type": "composer",
-            "url": "http://packagist.phpcomposer.com"
-        },
-        {
-            "packagist": false
+            "url": "https://packagist.laravel-china.org"
         }
-    ]
+    }
 }
